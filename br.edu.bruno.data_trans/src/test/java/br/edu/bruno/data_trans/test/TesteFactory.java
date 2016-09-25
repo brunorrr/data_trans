@@ -1,8 +1,6 @@
 package br.edu.bruno.data_trans.test;
 
-import java.io.Console;
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +55,7 @@ public class TesteFactory {
 		
 		File file = pdfTool.generatePdf( t );
 		
-//		Runtime.getRuntime().exec( "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe ".concat( file.getAbsolutePath() ) );
+		Runtime.getRuntime().exec( "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe ".concat( file.getAbsolutePath() ) );
 	}
 	
 }

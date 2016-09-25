@@ -27,12 +27,12 @@ public final class PdfToolFactory implements Serializable {
 	private static Log log = LogFactory.getLog(PdfToolFactory.class);
 	
 	private static final String KEY_LOCALIZACAO_XML_TEMP = "xmlTempLocation";
-	private static final String KEY_LOCALIZACAO_PDF_TEMP = "pdfTempLocation";
+	private static final String KEY_LOCALIZACAO_TRANS_TEMP = "transTempLocation";
 	
 	private final File LOCALIZACAO_XML_TEMP;
-	private final File LOCALIZACAO_PDF_TEMP;
+	private final File LOCALIZACAO_TRANS_TEMP;
 	
-	private static final String LOCALIZACAO_PROPRIEDADES = "pdf_tool.properties";
+	private static final String LOCALIZACAO_PROPRIEDADES = "data_trans.properties";
 	
 	private Properties propriedades;
 
@@ -49,14 +49,14 @@ public final class PdfToolFactory implements Serializable {
 		
 		LOCALIZACAO_XML_TEMP = new File( propriedades.getProperty( KEY_LOCALIZACAO_XML_TEMP ) );
 		if( !LOCALIZACAO_XML_TEMP.exists() || !LOCALIZACAO_XML_TEMP.isDirectory() )
-			throw new IOException( "The XML directory does not exists or is not a directory" );
+			throw new IOException( "The XML directory does not exist or is not a directory" );
 		
-		LOCALIZACAO_PDF_TEMP = new File( propriedades.getProperty( KEY_LOCALIZACAO_PDF_TEMP ) );
-		if( !LOCALIZACAO_PDF_TEMP.exists() || !LOCALIZACAO_PDF_TEMP.isDirectory() )
-			throw new IOException( "The PDF directory does not exists or is not a directory" );
+		LOCALIZACAO_TRANS_TEMP = new File( propriedades.getProperty( KEY_LOCALIZACAO_TRANS_TEMP ) );
+		if( !LOCALIZACAO_TRANS_TEMP.exists() || !LOCALIZACAO_TRANS_TEMP.isDirectory() )
+			throw new IOException( "The Transformed directory does not exist or is not a directory" );
 		
 		log.trace( "Property XML Temp Location: ".concat( LOCALIZACAO_XML_TEMP.getAbsolutePath() ) );
-		log.trace( "Property PDF Temp Location: ".concat( LOCALIZACAO_PDF_TEMP.getAbsolutePath() ) );
+		log.trace( "Property Transformed Temp Location: ".concat( LOCALIZACAO_TRANS_TEMP.getAbsolutePath() ) );
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public final class PdfToolFactory implements Serializable {
 	public PdfTool newPdfTool( File xsltFile ) throws SAXException, IOException{
 		log.debug( "Generating Pdftool for XSL file at ".concat( xsltFile.getAbsolutePath() ) );
 		return new PdfToolImpl( xsltFile, 
-				LOCALIZACAO_PDF_TEMP,
+				LOCALIZACAO_TRANS_TEMP,
 				LOCALIZACAO_XML_TEMP );
 	}
 	
